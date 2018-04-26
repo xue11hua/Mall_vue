@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <title>demo</title>
+  </head>
+  <body>
+    <div id="app"></div>
+
+    <script>
+    //自适应屏幕
+    window.onresize=function(){
+    	let htmlwidth=document.documentElement.clienWidth || document.body.clientWidth;
+    	let htmldom=document.getElementsByTagName('html')[0];
+    	if(htmlwidth>750){htmlwidth=750;}
+    	htmldom.style.fontSize = htmlwidth / 7.5 + 'px';
+    }
+   
+    	let htmlwidth=document.documentElement.clienWidth || document.body.clientWidth;
+    	let htmldom=document.getElementsByTagName('html')[0];
+    	if(htmlwidth>750){htmlwidth=750;}
+    	htmldom.style.fontSize = htmlwidth / 7.5 + 'px';
+    </script>
+    <style>
+		.van-swipe__indicators{
+			bottom: .6rem;
+		}
+    </style>
+  </body>
+</html>
