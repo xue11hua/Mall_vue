@@ -26,6 +26,7 @@
 	</div>
 </template>
 <script>
+import axios from 'axios'
 export default {
   name: 'shoping',
   data () {
@@ -38,6 +39,18 @@ export default {
       {imgurl:'http://7xjyw1.com1.z0.glb.clouddn.com/simleVueDemoPic003.jpg'}
       ]
     }
+  },
+  created(){
+  	axios({
+  		url:'https://www.easy-mock.com/mock/5ae5293bb188f2152c952d77/smilevue/index',
+  		method:'get',
+  	})
+  	.then(response=>{
+  		console.log(response)
+  	})
+  	.catch(error=>{
+  		console.log(error)
+  	})
   }
 }
 </script>
@@ -57,7 +70,8 @@ export default {
 		font-size: .2rem;
 		float: left;
 		margin-top: .2rem;
-		line-height: .6rem
+		line-height: .6rem;
+		
 
 	}
 	.search-btn{
