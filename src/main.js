@@ -6,6 +6,7 @@ import router from './router'
 // import vant from 'vant'     全局引入
 // import 'vant/lib/vant-css/index.css'
 // Vue.use(vant)
+//按需引入
 import {Button,Row,Col,Swipe,SwipeItem,Lazyload} from 'vant'  //按需引入
 Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload)
 Vue.config.productionTip = false

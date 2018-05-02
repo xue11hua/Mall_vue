@@ -17,12 +17,22 @@
 		<div class="swiper-div">
 			<van-swipe :autoplay="3000">
 				<van-swipe-item v-for="(itm,index) in banner" :key="index">
-					<img v-lazy="itm.imgurl" alt="" width="100%">
+					<img v-lazy="itm.image" alt="" width="100%">
 				</van-swipe-item>
 			</van-swipe>
 		</div>
-		
-		
+		<!-- 导航 -->
+		<div class="type-bar">
+			<div v-for="(itm,index) in category" :key="index">
+				<img v-lazy="itm.image" alt="" width="50%">
+				<span>{{itm.mallCategoryName}}</span>
+			</div>
+		</div>
+		<!-- 广告 -->
+		<div class="gd">
+			<img v-lazy="gdbanner" alt="" width="100%">
+		</div>
+
 	</div>
 </template>
 <script>
@@ -33,11 +43,10 @@ export default {
     return {
       a:'shoping',
       locaicon:require('../../assets/images/loca.png'),//引入图片
-      banner:[
-      {imgurl:'http://7xjyw1.com1.z0.glb.clouddn.com/simleVueDemoPic001.jpg'},
-      {imgurl:'http://7xjyw1.com1.z0.glb.clouddn.com/simleVueDemoPic002.jpg'},
-      {imgurl:'http://7xjyw1.com1.z0.glb.clouddn.com/simleVueDemoPic003.jpg'}
-      ]
+      banner:[],
+      category:[],
+      gdbanner:''
+    
     }
   },
   created(){
@@ -46,7 +55,10 @@ export default {
   		method:'get',
   	})
   	.then(response=>{
-  		console.log(response)
+  		console.log(response.data.data)
+  		this.category=response.data.data.category;
+  		this.gdbanner=response.data.data.advertesPicture.PICTURE_ADDRESS;
+  		this.banner=response.data.data.slides;
   	})
   	.catch(error=>{
   		console.log(error)
@@ -85,6 +97,23 @@ export default {
 		max-height: 3.2rem;
 		overflow: hidden;
 	}
+	.type-bar{
+		background-color: #fff;
+		margin:.2rem .3rem .3rem .3rem;
+		border-radius: .1rem;
+		font-size: 14px;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		text-align: center;
 
+	}
+	.type-bar span{
+		display: inline-block;
+		width: 100%;
+	}
+	.type-bar div{
+		padding: .1rem
+	}
 
 </style>
