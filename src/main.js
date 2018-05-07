@@ -7,9 +7,12 @@ import router from './router'
 // import 'vant/lib/vant-css/index.css'
 // Vue.use(vant)
 //按需引入
+// import Vueswiper from 'vue-awesome-swiper'
+// import 'swiper/dist/css/swiper.css'
 import {Button,Row,Col,Swipe,SwipeItem,Lazyload} from 'vant'  //按需引入
 Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload)
 Vue.config.productionTip = false
+
 
 /* eslint-disable no-new */
 new Vue({

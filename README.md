@@ -15,7 +15,8 @@ npm i babel-plugin-import -D
 媒体查询
 flex布局
 #第四节
-
-
+#第九节
+滑动插件
+npm install vue-awesome-swiper --save
 
 

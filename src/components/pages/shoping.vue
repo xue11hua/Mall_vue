@@ -32,22 +32,48 @@
 		<div class="gd">
 			<img v-lazy="gdbanner" alt="" width="100%">
 		</div>
-
+		<!-- 商品推荐 -->
+		<div class="recommend">
+			<div class="recommend-title">
+			商品推荐
+			</div>
+			<div class="recommend-body">
+				<swiper :options="swiperOption">
+					<swiper-slide v-for="(item,index) in recommend" :key='index'>
+						<div class="recommend-item">
+							<img :src="item.image" alt="" width="80%">
+							<div>{{item.goodsName}}</div>
+							<div>￥{{item.price}}(￥{{item.mallPrice}})</div>
+						</div>
+					</swiper-slide>
+				</swiper>
+			</div>
+		</div>
 	</div>
 </template>
 <script>
 import axios from 'axios'
+//引入滑动组件
+import 'swiper/dist/css/swiper.css'
+import {swiper,swiperSlide} from 'vue-awesome-swiper'
 export default {
   name: 'shoping',
   data () {
     return {
+      swiperOption:{
+      		slidesPerView:3
+      },
       a:'shoping',
       locaicon:require('../../assets/images/loca.png'),//引入图片
       banner:[],
       category:[],
-      gdbanner:''
-    
+      gdbanner:'',
+      recommend:[],
     }
+  },
+  components:{
+  	swiper,
+  	swiperSlide
   },
   created(){
   	axios({
@@ -59,6 +85,7 @@ export default {
   		this.category=response.data.data.category;
   		this.gdbanner=response.data.data.advertesPicture.PICTURE_ADDRESS;
   		this.banner=response.data.data.slides;
+  		this.recommend=response.data.data.recommend;
   	})
   	.catch(error=>{
   		console.log(error)
@@ -68,8 +95,7 @@ export default {
 </script>
 <style scoped>
 	.search-bar{
-		
-		background-color:#e5017d;
+	   background-color:#e5017d;
 	}
 	.search-input{
 		width: 100%;
@@ -115,5 +141,24 @@ export default {
 	.type-bar div{
 		padding: .1rem
 	}
-
+	.recommend{
+		background: #fff;
+		margin-top: .4rem;
+	}
+	.recommend-title{
+		border-bottom: 1px solid #eee;
+		font-size: 14px;
+		padding: .2rem;
+		color: #e5017d;
+	}
+	.recommend-body{
+		border-bottom: 1px solid #eee;
+		font-size: 14px;
+	}
+	.recommend-item{
+		width: 99%;
+		border-right: 1px solid #eee;
+		font-size: 12px;
+		text-align: center;
+	}
 </style>
