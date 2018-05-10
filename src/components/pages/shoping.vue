@@ -48,7 +48,32 @@
 					</swiper-slide>
 				</swiper>
 			</div>
+		</div> 
+		<!-- 楼层 -->
+		<div class="floor">
+		<!-- 不规则 -->
+			<div class="floor-anomaly">
+				<div class="floor-one">
+					<img :src="floor1_1.image" alt="" width="100%">
+				</div>
+				<div>
+					<div class="floor-two">
+						<img :src="floor1_2.image" alt="" width="100%">
+					</div>
+					<div>
+						<img :src="floor1_3.image" alt="" width="100%">
+					</div>
+				</div>
+			</div>
+			<!-- 规则 -->
+			<div class="floor-rule">
+				<div v-for="(item,index) in floor1.slice(3)" :key="index">
+					<img :src="item.image" alt="" width="100%">
+				</div>
+			</div>
+
 		</div>
+
 	</div>
 </template>
 <script>
@@ -69,6 +94,11 @@ export default {
       category:[],
       gdbanner:'',
       recommend:[],
+      floor1:[],
+      floor1_1:[],
+      floor1_2:[],
+      floor1_3:[],
+
     }
   },
   components:{
@@ -86,6 +116,10 @@ export default {
   		this.gdbanner=response.data.data.advertesPicture.PICTURE_ADDRESS;
   		this.banner=response.data.data.slides;
   		this.recommend=response.data.data.recommend;
+  		this.floor1=response.data.data.floor1;
+  		this.floor1_1=this.floor1[0];
+  		this.floor1_2=this.floor1[1];
+  		this.floor1_3=this.floor1[2];
   	})
   	.catch(error=>{
   		console.log(error)
@@ -160,5 +194,38 @@ export default {
 		border-right: 1px solid #eee;
 		font-size: 12px;
 		text-align: center;
+	}
+	.floor-anomaly{
+		display: flex;
+		flex-direction: row;
+		background: #fff;
+		border-bottom: 1px solid #ddd;
+	}
+	.floor-anomaly div{
+		width:3.9rem;
+		box-sizing:border-box;
+	}
+	.floor-one{
+		
+		border-right: 1px solid #ddd;
+	}
+	.floor-two{
+		
+		border-bottom: 1px solid #ddd;
+	}
+	.floor-rule{
+		
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+	}
+	.floor-rule div{
+		box-sizing:border-box;
+		width: 3.9rem;
+		border-bottom: 1px solid #ddd;
+
+	}
+	.floor-rule div:nth-child(odd){
+		border-right: 1px solid #ddd;
 	}
 </style>
