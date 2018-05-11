@@ -50,29 +50,8 @@
 			</div>
 		</div> 
 		<!-- 楼层 -->
-		<div class="floor">
-		<!-- 不规则 -->
-			<div class="floor-anomaly">
-				<div class="floor-one">
-					<img :src="floor1_1.image" alt="" width="100%">
-				</div>
-				<div>
-					<div class="floor-two">
-						<img :src="floor1_2.image" alt="" width="100%">
-					</div>
-					<div>
-						<img :src="floor1_3.image" alt="" width="100%">
-					</div>
-				</div>
-			</div>
-			<!-- 规则 -->
-			<div class="floor-rule">
-				<div v-for="(item,index) in floor1.slice(3)" :key="index">
-					<img :src="item.image" alt="" width="100%">
-				</div>
-			</div>
-
-		</div>
+		<!-- 传递数据到子组件 -->
+		<floorcomponent :floorData='floor1'></floorcomponent>	
 
 	</div>
 </template>
@@ -81,6 +60,7 @@ import axios from 'axios'
 //引入滑动组件
 import 'swiper/dist/css/swiper.css'
 import {swiper,swiperSlide} from 'vue-awesome-swiper'
+import floorcomponent from '../component/floorcomponent'//引入组件
 export default {
   name: 'shoping',
   data () {
@@ -101,9 +81,10 @@ export default {
 
     }
   },
-  components:{
+  components:{//注册组件
   	swiper,
-  	swiperSlide
+  	swiperSlide,
+  	floorcomponent
   },
   created(){
   	axios({
@@ -111,7 +92,7 @@ export default {
   		method:'get',
   	})
   	.then(response=>{
-  		console.log(response.data.data)
+  		//console.log(response.data.data)
   		this.category=response.data.data.category;
   		this.gdbanner=response.data.data.advertesPicture.PICTURE_ADDRESS;
   		this.banner=response.data.data.slides;
@@ -195,37 +176,5 @@ export default {
 		font-size: 12px;
 		text-align: center;
 	}
-	.floor-anomaly{
-		display: flex;
-		flex-direction: row;
-		background: #fff;
-		border-bottom: 1px solid #ddd;
-	}
-	.floor-anomaly div{
-		width:3.9rem;
-		box-sizing:border-box;
-	}
-	.floor-one{
-		
-		border-right: 1px solid #ddd;
-	}
-	.floor-two{
-		
-		border-bottom: 1px solid #ddd;
-	}
-	.floor-rule{
-		
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-	}
-	.floor-rule div{
-		box-sizing:border-box;
-		width: 3.9rem;
-		border-bottom: 1px solid #ddd;
-
-	}
-	.floor-rule div:nth-child(odd){
-		border-right: 1px solid #ddd;
-	}
+	
 </style>
