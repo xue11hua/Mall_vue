@@ -1,5 +1,8 @@
 <template>
 	<div>
+		<div class="floor-title">
+			{{floortitle}}
+		</div>
 		<div class="floor">
 		<!-- 不规则 -->
 			<div class="floor-anomaly">
@@ -27,12 +30,13 @@
 </template>
 <script>
 	export default{
-		props:['floorData'],//接收父组件数据
+		props:['floorData','floortitle'],//接收父组件数据
 		data(){
 			return {
 				floorData0:{},
 				floorData1:{},
-				floorData2:{}
+				floorData2:{},
+
 			}
 		},
 		created(){
@@ -50,6 +54,12 @@
 	}
 </script>
 <style scoped>
+	.floor-title{
+		text-align: center;
+		font-size:14px;
+		height: 1rem;
+		line-height: 1rem;
+	}
 	.floor-anomaly{
 		display: flex;
 		flex-direction: row;
@@ -74,11 +84,13 @@
 		flex-direction: row;
 		flex-wrap: wrap;
 		width: 100%;
+
 	}
 	.floor-rule div{
 		box-sizing:border-box;
 		width: 50%;
 		border-bottom: 1px solid #ddd;
+		background: #fff;
 
 	}
 	.floor-rule div:nth-child(odd){

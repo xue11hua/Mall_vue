@@ -51,7 +51,9 @@
 		</div> 
 		<!-- 楼层 -->
 		<!-- 传递数据到子组件 -->
-		<floorcomponent :floorData='floor1'></floorcomponent>	
+		<floorcomponent :floorData='floor1' :floortitle='floorName.floor1'></floorcomponent>
+		<floorcomponent :floorData='floor2' :floortitle='floorName.floor2'></floorcomponent>	
+		<floorcomponent :floorData='floor3' :floortitle='floorName.floor3'></floorcomponent>		
 
 	</div>
 </template>
@@ -75,9 +77,9 @@ export default {
       gdbanner:'',
       recommend:[],
       floor1:[],
-      floor1_1:[],
-      floor1_2:[],
-      floor1_3:[],
+      floor2:[],
+      floor3:[],
+      floorName:[]
 
     }
   },
@@ -98,9 +100,9 @@ export default {
   		this.banner=response.data.data.slides;
   		this.recommend=response.data.data.recommend;
   		this.floor1=response.data.data.floor1;
-  		this.floor1_1=this.floor1[0];
-  		this.floor1_2=this.floor1[1];
-  		this.floor1_3=this.floor1[2];
+  		this.floor2=response.data.data.floor2;
+  		this.floor3=response.data.data.floor3;
+  		this.floorName=response.data.data.floorName
   	})
   	.catch(error=>{
   		console.log(error)
@@ -154,7 +156,8 @@ export default {
 		width: 100%;
 	}
 	.type-bar div{
-		padding: .1rem
+		padding: .1rem;
+
 	}
 	.recommend{
 		background: #fff;
@@ -175,6 +178,12 @@ export default {
 		border-right: 1px solid #eee;
 		font-size: 12px;
 		text-align: center;
+	}
+	.gd{
+		height: .7rem;
+	}
+	.gd img{
+		float: left;
 	}
 	
 </style>
