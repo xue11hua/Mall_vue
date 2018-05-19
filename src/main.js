@@ -9,8 +9,8 @@ import router from './router'
 //按需引入
 // import Vueswiper from 'vue-awesome-swiper'
 // import 'swiper/dist/css/swiper.css'
-import {Button,Row,Col,Swipe,SwipeItem,Lazyload} from 'vant'  //按需引入
-Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload)
+import {Button,Row,Col,Swipe,SwipeItem,Lazyload,List} from 'vant'  //按需引入
+Vue.use(Button).use(Row).use(Col).use(Swipe).use(SwipeItem).use(Lazyload).use(List)
 Vue.config.productionTip = false
 
 

@@ -43,7 +43,7 @@
 						<div class="recommend-item">
 							<img :src="item.image" alt="" width="80%">
 							<div>{{item.goodsName}}</div>
-							<div>￥{{item.price}}(￥{{item.mallPrice}})</div>
+							<div>￥{{item.price | moneyfilter}}(￥{{item.mallPrice | moneyfilter}})</div>
 						</div>
 					</swiper-slide>
 				</swiper>
@@ -54,7 +54,25 @@
 		<floorcomponent :floorData='floor1' :floortitle='floorName.floor1'></floorcomponent>
 		<floorcomponent :floorData='floor2' :floortitle='floorName.floor2'></floorcomponent>	
 		<floorcomponent :floorData='floor3' :floortitle='floorName.floor3'></floorcomponent>		
-
+		<!-- 热卖 -->
+		<div class="hot">
+			<div class="hot-title">
+				热卖食品
+			</div>
+			<div class="hot-goods">
+				<van-list>
+					<van-row gutter='20'>
+						<van-col span='12' v-for='(item,index) in hotgoods' :key='index'>
+							<!-- <div>
+								{{item.name}}
+							</div> -->
+							<goodlist :goodsImage='item.image' :goodsName='item.name' :goodsPrice='item.price'></goodlist>	
+						</van-col>
+					</van-row>
+				</van-list>	
+			</div>
+		</div>
+		
 	</div>
 </template>
 <script>
@@ -63,6 +81,8 @@ import axios from 'axios'
 import 'swiper/dist/css/swiper.css'
 import {swiper,swiperSlide} from 'vue-awesome-swiper'
 import floorcomponent from '../component/floorcomponent'//引入组件
+import goodlist from '../component/goodlist'//引入组件
+import { tomoney } from '@/filter/moneyfilter.js'//引入filter
 export default {
   name: 'shoping',
   data () {
@@ -79,14 +99,21 @@ export default {
       floor1:[],
       floor2:[],
       floor3:[],
-      floorName:[]
+      floorName:[],
+      hotgoods:[],//热卖商品
 
     }
+  },
+  filters:{//过滤器
+  	moneyfilter(money){
+  		return tomoney(money)
+  	}
   },
   components:{//注册组件
   	swiper,
   	swiperSlide,
-  	floorcomponent
+  	floorcomponent,
+  	goodlist
   },
   created(){
   	axios({
@@ -102,7 +129,8 @@ export default {
   		this.floor1=response.data.data.floor1;
   		this.floor2=response.data.data.floor2;
   		this.floor3=response.data.data.floor3;
-  		this.floorName=response.data.data.floorName
+  		this.floorName=response.data.data.floorName;
+  		this.hotgoods=response.data.data.hotGoods;
   	})
   	.catch(error=>{
   		console.log(error)
@@ -185,5 +213,14 @@ export default {
 	.gd img{
 		float: left;
 	}
-	
+	/*热卖食品*/
+	.hot-title{
+		text-align: center;
+		font-size:14px;
+		height: 1rem;
+		line-height: 1rem;
+	}
+	.hot-goods{
+		background: #fff;
+	}
 </style>
