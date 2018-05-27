@@ -83,6 +83,7 @@ import {swiper,swiperSlide} from 'vue-awesome-swiper'
 import floorcomponent from '../component/floorcomponent'//引入组件
 import goodlist from '../component/goodlist'//引入组件
 import { tomoney } from '@/filter/moneyfilter.js'//引入filter
+import url from '@/seversconfig.js'
 export default {
   name: 'shoping',
   data () {
@@ -117,7 +118,7 @@ export default {
   },
   created(){
   	axios({
-  		url:'https://www.easy-mock.com/mock/5ae5293bb188f2152c952d77/smilevue/index',
+  		url:url.getshopingmallinfo,
   		method:'get',
   	})
   	.then(response=>{
