@@ -18,5 +18,24 @@ flex布局
 #第九节
 滑动插件
 npm install vue-awesome-swiper --save
+#安装koa2
+npm init -y 初始化项目
+安装koa2
+npm install koa --save
+#安装mongoose
+npm install --save mongoose
 
+#安装glob
+npm install --save glob
 
+#安装bcrypt 文件加密
+cnpm install --save bcrypt
+
+#安装koa-router
+npm install --save koa-router
+
+#安装koa-bodyparser
+npm install --save koa-bodyparser
+
+#跨域安装koa2-cors
+npm install --save koa2-cors
