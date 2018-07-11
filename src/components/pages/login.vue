@@ -8,7 +8,6 @@
   @click-left="onClickLeft"
   
 />
-
   <van-field
     v-model="username"
     label="用户名"
@@ -46,6 +45,12 @@ import url from '@/seversconfig.js'
 				passworderroemsg:'',//密码出错
 			}
 		},
+		created(){
+			if(localStorage.userinfo){
+				Toast('您已经登录')
+				this.$router.push('/')
+			}
+		},
 		methods: {
 		    onClickLeft() {
 		      this.$router.go(-1)
@@ -54,7 +59,8 @@ import url from '@/seversconfig.js'
 		    login(){
 		    	this.openloading=true;
 		    	 axios({
-			  		url:url.registerUser,
+			  		//url:url.registerUser,
+			  		url:url.login,
 			  		method:'post',
 			  		data:{
 			  			userName:this.username,
@@ -62,11 +68,28 @@ import url from '@/seversconfig.js'
 			  		}
 			  	})
 			  	.then(response=>{
+
 			  		console.log(response);
-			  		
+			  		if(response.data.code==200 && response.data.message){
+			  			new Promise((resolve,reject)=>{
+				  			localStorage.userinfo={userName:this.username}
+				  			setTimeout(()=>{resolve()},500)
+				  		}).then(()=>{
+				  			Toast('登录成功')
+				  			this.$router.push('/')
+				  		}).catch(err=>{
+				  			Toast('登录状态保存失败')
+				  		})
+			  			
+			  		}else{
+			  			Toast('登录失败')
+			  			this.openloading=false;
+			  		}
 			  		
 			  	})
 			  	.catch(error=>{
+			  		Toast('登录失败');
+			  		this.openloading=false;
 			  		console.log(error);
 			  		
 			  	})

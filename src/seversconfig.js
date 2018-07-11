@@ -4,5 +4,6 @@ const url={
 	getshopingmallinfo:basurl+'index',//首页
 	getgoodsinfo:basurl+'getgoodsinfo',
 	registerUser:localurl+'user/register',//注册接口
+	login:localurl+'user/login',//登录
 }
 module.exports=url
